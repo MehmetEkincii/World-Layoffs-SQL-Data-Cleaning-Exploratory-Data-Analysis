@@ -43,7 +43,9 @@ WHERE (company, location, industry, total_laid_off, percentage_laid_off, `date`,
 
 2. Standardizing Data:
 
-After Looking at the dataset we can see that there is some mistakes and multiple crypto names so we changed it to straight to Crypto and going through different companies to make sure that there is no duplicates also changed blank values to null.
+After Looking at the dataset we can see that there is some mistakes and multiple crypto names so we changed it to straight to Crypto. 
+Also going through different companies to make sure that there is no duplicates,
+Changed blank values to null.
 
 UPDATE layoffs_staging2
 SET industry = 'Crypto'
@@ -60,6 +62,44 @@ WHERE company LIKE 'airbnb%';
 UPDATE layoffs_staging2
 SET industry = NULL
 WHERE industry = '';
+
+
+3. Removing any columns and rows that i don't need:
+SELECT *
+FROM layoffs_staging2
+WHERE total_laid_off IS NULL;
+
+SELECT *
+FROM layoffs_staging2
+WHERE total_laid_off IS NULL
+AND percentage_laid_off IS NULL;
+
+Removing both that are null because it is useless data now:
+DELETE FROM layoffs_staging2
+WHERE total_laid_off IS NULL
+AND percentage_laid_off IS NULL;
+
+
+Exporatory data analysis (EDA)
+
+SELECT MAX(total_laid_off)
+FROM layoffs_staging2;
+
+What percentage and how big were these layoffs?
+SELECT MAX(percentage_laid_off),  MIN(percentage_laid_off)
+FROM layoffs_staging2
+WHERE  percentage_laid_off IS NOT NULL;
+
+Which companies had 1 which is basically 100 percent of they company laid off?
+SELECT *
+FROM world_layoffs.layoffs_staging2
+WHERE  percentage_laid_off = 1;
+
+if we order by funcs_raised_millions we can see how big some of these companies were:
+SELECT *
+FROM world_layoffs.layoffs_staging2
+WHERE  percentage_laid_off = 1
+ORDER BY funds_raised_millions DESC;
 
 
 
