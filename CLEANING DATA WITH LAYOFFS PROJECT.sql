@@ -10,7 +10,7 @@ SELECT * FROM world_layoffs.layoffs;
 
 
 
-#Removing Duplicates
+##Removing Duplicates
 
 Select*
 From layoffs_staging;
