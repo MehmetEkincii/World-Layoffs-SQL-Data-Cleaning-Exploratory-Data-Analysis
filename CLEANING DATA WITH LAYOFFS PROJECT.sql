@@ -10,7 +10,7 @@ SELECT * FROM world_layoffs.layoffs;
 
 
 
-##Removing Duplicates
+# Removing Duplicates
 
 Select*
 From layoffs_staging;
@@ -121,7 +121,7 @@ DELETE FROM world_layoffs.layoffs_staging2
 WHERE row_num >= 2;
 
 
--- 2. Standardizing Data
+# Standardizing Data
     
 SELECT * 
 FROM layoffs_staging2;
@@ -198,9 +198,9 @@ MODIFY COLUMN `date` DATE;
 SELECT *
 FROM layoffs_staging2;    
     
--- 3. Null Values (Happy with leaving them how it is)
+# Null Values (Happy with leaving them how it is)
     
- -- 4. Removing any columns and rows i don't need
+# Removing any columns and rows i don't need
  
 SELECT *
 FROM layoffs_staging2
