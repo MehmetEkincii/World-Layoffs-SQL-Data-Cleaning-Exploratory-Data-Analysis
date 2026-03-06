@@ -80,7 +80,7 @@ WHERE total_laid_off IS NULL
 AND percentage_laid_off IS NULL;
 
 
-Exporatory data analysis (EDA)
+Exporatory data analysis (EDA):
 
 SELECT MAX(total_laid_off)
 FROM layoffs_staging2;
