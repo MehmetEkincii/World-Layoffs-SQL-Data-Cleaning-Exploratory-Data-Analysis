@@ -43,11 +43,23 @@ WHERE (company, location, industry, total_laid_off, percentage_laid_off, `date`,
 
 2. Standardizing Data:
 
-/* After Looking at the dataset we can see that there is some mistakes and multiple crypto names so we changed it to straight to Crypto. /*
+After Looking at the dataset we can see that there is some mistakes and multiple crypto names so we changed it to straight to Crypto and going through different companies to make sure that there is no duplicates also changed blank values to null.
 
 UPDATE layoffs_staging2
 SET industry = 'Crypto'
-WHERE industry IN ('Crypto Currency', 'CryptoCurrency');  
+WHERE industry IN ('Crypto Currency', 'CryptoCurrency');
+
+SELECT *
+FROM layoffs_staging2
+WHERE company LIKE 'Bally%';
+
+SELECT *
+FROM world_layoffs.layoffs_staging2
+WHERE company LIKE 'airbnb%';
+
+UPDATE layoffs_staging2
+SET industry = NULL
+WHERE industry = '';
 
 
 
